@@ -1,5 +1,7 @@
 package org.santi;
 
+import com.sun.source.tree.Scope;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
@@ -72,6 +74,15 @@ public class Client {
         }
     }
 
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your name for the group chat: ");
+        String username = scanner.nextLine();
+        Socket socket = new Socket("localhost", 1234);
+        Client client = new Client(socket, username);
+        client.listenForMessage();
+        client.sendMessage();
+    }
 }
 
 
